@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'BLOC Demo'),
     );
   }
 }
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             StreamBuilder(
-              stream: bloc.counterStream,
+              stream: bloc.counterStream, //takes output stream
               builder: (context, snapshot) {
                 return Text(
                   '$_counter',
@@ -61,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _counter++;
-          bloc.counterSink.add(_counter);
+          bloc.counterSink.add(
+              _counter); //adding _counter into stream pipeline using counterSink
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
